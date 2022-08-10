@@ -21,7 +21,7 @@ const App = () => {
     fetchPosts();
   }, []);
 
-  // Get current Films
+  // Get current Films ok
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
