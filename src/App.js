@@ -4,10 +4,10 @@ import Pagination from './components/Pagination';
 import axios from 'axios';
 import './App.css';
 
-
+// condição da página
 const condition = true;
 
-
+// const do App
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ const App = () => {
   const [postsPerPage] = useState(10);
   const baseURL = "https://ghibliapi.herokuapp.com/films";
 
-
+  // função para válidar requisição em axios
   const getAnswer = async () => {
     setLoading(true);
     const res = await axios.get(baseURL);
@@ -23,21 +23,21 @@ const App = () => {
     setLoading(false);
   };
 
+  // estado das postagens
   useEffect(() => {
     if (!condition) {
       return;
     }
-    
     getAnswer();
   }, []);
 
-
+  // função Btn atualizar requisição e volta a primeira página
   function updatePost() {
     getAnswer();
     paginate(1);
   }
 
-  // Get current Films ok
+  // Paginação dos Films
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -47,14 +47,15 @@ const App = () => {
 
   return (
     <div className='container mt-2'>
+
         <div className="row align-items-center">
           <div className="col">
-            <h1 className='text-light my-3 text-uppercase h3'><strong>Return all films</strong></h1>
+            <h1 className='text-light my-3 h3'><strong>Return all films</strong></h1>
           </div>
-          <div class="col d-flex justify-content-end">
-            <button className="btn btn-light rounded-0 my-4" onClick={updatePost}>Atualizar</button>
+          <div className="col d-flex justify-content-end">
+            <button className="btn btn-light text-dark rounded-0 my-4" onClick={updatePost}>Atualizar</button>
           </div>
-      </div>
+        </div>
 
       <Posts posts={currentPosts} loading={loading} />
       <Pagination
