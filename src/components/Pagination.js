@@ -8,12 +8,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   }
 
   return (
-    <nav>
+    <nav aria-label="Page navigation">
       <ul className='pagination justify-content-center my-4'>
         {pageNumbers.map(number => (
           <li key={number} className='page-item'>
-            <a onClick={() => paginate(number)} href='!#' className='page-link text-dark'>
-              {number}
+            <a onClick={() => paginate(number)} href='!#' className='btn btn-light rounded-0'>
+            {number}
             </a>
           </li>
         ))}
